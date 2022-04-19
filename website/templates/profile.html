@@ -1,0 +1,26 @@
+{% extends 'base.html'%}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+
+<h3>your notes, {{user.first_name}}!</h3>
+<ul class="list-group list-group-flush" id="notes">
+{% for note in user.notes %}
+<li class="list-group-item"> {{ note.data }}</li>
+{% endfor %}
+</ul>
+{% if current_user.biography %}
+{{current_user.biography}}
+{% else %}
+<form method="POST">
+	<h3 align="center">Bio</h3>
+	<div class="form-group">
+		<label for="email"> Biography</label>
+		<input type="text" class="form-control" id=bio name="bio" placeholder="Enter your Biography">
+	</div>
+	<br>
+	<button type="submit" class="btn btn-primary">Add Bio</button>
+</form>
+{% endif %}
+{% endblock%}
