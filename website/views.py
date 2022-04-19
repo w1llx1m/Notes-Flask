@@ -29,6 +29,7 @@ def profile():
 	if request.method == 'POST':
 		bio = request.form.get('bio')
 		current_user.biography = bio
+		db.session.commit()
 	return render_template('profile.html', user=current_user)
 
 @views.route('/delete-note', methods=['POST'])
